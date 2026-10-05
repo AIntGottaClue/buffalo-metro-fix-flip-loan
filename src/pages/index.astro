@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CityContent from '../components/CityContent.astro';
+import {brand,domain,cities} from '../data/cities';
+const title='Fix and Flip Loans in Buffalo Niagara, NY | Buffalo Metro Fix & Flip Loan';
+const description='We connect Buffalo, Cheektowaga, Amherst and Niagara Falls area investors with fix and flip funding sources. Funding within 48 hours. Tell us your goal.';
+const businessId=`https://${domain}/#business`;
+const faq=[{q:'Are you a direct lender?',a:'No. We are connectors. We introduce investors to funding sources, and the funding source determines eligibility and terms.'},{q:'Does submitting guarantee funding?',a:'No. A submission starts a review, not an approval or commitment.'}];
+const areas=cities.map(c=>({'@type':'City',name:c.name,containedInPlace:{'@type':'State',name:'New York'}}));
+const jsonld=[{'@context':'https://schema.org','@type':'WebSite',name:brand,url:`https://${domain}/`},{'@context':'https://schema.org','@type':'FinancialService','@id':businessId,name:brand,url:`https://${domain}/`,areaServed:areas,description:'Fix and flip funding connections for real estate investors across Buffalo, Cheektowaga, Amherst, Niagara Falls and the surrounding Erie and Niagara county area. Not a direct lender.'},{'@context':'https://schema.org','@type':'Service',serviceType:'Fix and flip funding connection service',provider:{'@id':businessId},areaServed:areas},{'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.map(f=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))}];
+---
+<Base title={title} description={description} path="/" jsonld={jsonld}><Header/><main><CityContent cityName="Buffalo Metro" location="Homepage" intro="Buffalo Niagara has Buffalo doubles, brick bungalows in Cheektowaga and Tonawanda, and suburban colonials in Amherst and Orchard Park. Tell us about the home, the work you plan and how you expect to sell. We are connectors, and we introduce your project to funding sources for funding within 48 hours." angle="A South Buffalo double, a Kenmore bungalow and an Amherst colonial call for different scopes and sell to different buyers. Start with the real condition of the house, the work you plan and recent sales on the same street." caution="Lake effect winters, old wiring and pre-1978 lead paint come up often here. Check them before you rely on a budget, and tell us what you have already confirmed." showCityGrid={true}/></main><Footer/></Base>
